@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+    <!-- Content here -->
+	<div class="container">
+		<br>
+		<h3>List of transactions</h3>
+		<div class="row">
+			{% for d in data %}
+			<div class="col-md-4">
+				{{ d.summary }}
+				<p>{{ d.created }}</p>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+    <!--/ End Content -->
+{% endblock %}
