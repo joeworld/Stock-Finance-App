@@ -12,13 +12,17 @@ class stockRepository:
 	def __init__(self, req=None):
 		self.__req = req
 
-	def getUserStock(self, user_id): # Returns user stocks
-		user_stock = userStock.objects.filter(user_id=user_id).order_by('-id')
-		return user_stock
+	def getUserStock(self, user_id, values = False): # Returns user stocks
+		if values == True:
+			user_stock = userStock.objects.filter(user_id=user_id).values('stock_symbol','created').order_by('-id')
+			return user_stock
+		else:
+			user_stock = userStock.objects.filter(user_id=user_id).order_by('-id')
+			return user_stock
 
 	def checkIfStockIsSold(self, symbol, user_id):
 		try:
-			check_stock = userStock.objects.get(user_id=user_id,stock_symbol=symbol)
+			check_stock = userStock.objects.get(user_id=user_id, stock_symbol=symbol)
 		except userStock.DoesNotExist:
 			check_stock = False
 

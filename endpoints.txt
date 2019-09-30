@@ -1,0 +1,35 @@
+/api/v1/auth/register # User Registration
+Params
+[username,email,password,api_key]
+
+/api/v1/auth/signin # User Signin
+Params
+[username,password,api_key]
+
+/api/v1/stock/price # Search Stock to get just price
+Params
+[user_id,stock_symbol,api_key]
+
+/api/v1/stock/search # Search Stock to get full quote
+Params
+[user_id,stock_symbol,api_key]
+
+/api/v1/stock/buy # Buy a stock
+Params
+[user_id,stock_symbol,api_key]
+
+/api/v1/user-stocks # User stocks
+Params
+[user_id,api_key]
+
+/api/v1/stock/sell # Sell stock
+Params
+[user_id,receiver_id,stock_symbol,api_key]
+
+/api/v1/update-wallet # Update Wallet
+Params
+[user_id,new_wallet,api_key]
+
+/api/v1/user-transactions # User Transactions
+Params
+[user_id,api_key]

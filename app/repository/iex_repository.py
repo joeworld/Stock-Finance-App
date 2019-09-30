@@ -32,6 +32,14 @@ class iexRepository:
 		if err is not None:
 			return err
 
+	def getStockViaClient(self):
+		try:
+			stock = Stock(self.__stock_symbol, token=self.__secret_key)
+			stock = stock.get_quote()
+		except:
+			stock = False
+		return stock
+
 	def getMultipleStocks(self, stock_symbols): #Return multiple stocks
 		batch = Stock(stock_symbols, token=self.__secret_key)
 		return batch.get_quote()

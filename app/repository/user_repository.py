@@ -24,8 +24,25 @@ class userRepository:
 			user = False
 		return user
 
+	def getByEmail(self, value):
+		try:
+			user = User.objects.get(email=value)
+		except User.DoesNotExist:
+			user = False
+		return user
+
+	def getByUsername(self, value):
+		try:
+			user = User.objects.get(username=value)
+		except User.DoesNotExist:
+			user = False
+		return user
+
 	def getAll(self):
 		return User.objects.all()
+
+	def getAllValues(self):
+		return User.objects.values()
 
 	def getUserWallet(self, user_id):
 		try:
@@ -68,7 +85,11 @@ class userRepository:
 		else:
 			return False
 
-	def getUserTransaction(self,user_id):
+	def getUserTransaction(self, user_id, values = False):
+		if values == True:
+			user_transaction = userTransaction.objects.filter(user_id=user_id).values('transaction_id','summary','created').order_by('-id')
+			return user_transaction
+
 		user_transaction = userTransaction.objects.filter(user_id=user_id).order_by('-id')
 		return user_transaction
 

@@ -9,7 +9,7 @@ from django.contrib import messages
 # Create your views here.
 @login_required(login_url='/auth/signin')
 def view_stock(req, symbol):
-	data = iexRepository(settings.IEX_TOKEN_SK,symbol)
+	data = iexRepository(settings.IEX_TOKEN_SK, symbol)
 	data = data.getStockQuote()
 	check_stock = stockRepository()
 	check_stock = check_stock.checkIfStockIsSoldToOthers(symbol)

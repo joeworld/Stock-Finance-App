@@ -13,7 +13,7 @@ class loginForm(ModelForm):
 		password = self.cleaned_data.get('password')
 		
 		if User.objects.get(username=username) is None:
-			self._errors['invalid'] = self.error_class([
+			self._errors['username'] = self.error_class([
 				'Username does not exist'])
 
 		return self.cleaned_data

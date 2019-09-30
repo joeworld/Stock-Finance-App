@@ -22,7 +22,7 @@ class signupForm(ModelForm):
 			self._errors['username'] = self.error_class([
 				'Username already exists'])
 
-		if User.objects.filter(username=username).exists():
+		if User.objects.filter(email=email).exists():
 			self._errors['email'] = self.error_class([
 				'Email already exists'])
 
