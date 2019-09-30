@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app'
+    'app',
+    'api',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -86,6 +88,12 @@ DATABASES = {
     }
 }
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -120,6 +128,11 @@ USE_L10N = True
 USE_TZ = True
 
 APPEND_SLASH = True
+
+APP_ENDPOINT = ""
+
+IEX_TOKEN_SK = "sk_69cf7c60dde84d889024ea495df06f7a"
+IEX_TOKEN_PK = "pk_ffc7f506d58a422e84cce9753e7dc2f3"
 
 
 # Static files (CSS, JavaScript, Images)

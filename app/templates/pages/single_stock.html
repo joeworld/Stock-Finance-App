@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+    <!-- Content here -->
+	<div class="container">
+		{% if data.companyName is not None %}
+		<br>
+		<h3>{{data.companyName}}</h3>
+		<div class="jumbotron">
+
+ <p><b>Stock Latest Price: </b>${{data.latestPrice}}</p>
+ <p><b>Stock Latest Time: </b>{{data.latestTime}}</p>
+ <p><b>Stock MarketCap: </b>{{data.marketCap}}</p>
+ <p><b>Stock Latest Update: </b> {{data.latestUpdate}}</p>
+ <p><b>Stock Latest Volume: </b> {{data.latestVolume}}</p>
+ <p><b>Stock Primary Exchange: </b>{{data.primaryExchange}}</p>
+ <p><b>Stock Sector: </b>{{data.sector}}</p>
+ <p><b>Stock Week52High: </b>{{data.week52High}}</p>
+ <p><b>Stock Week52Low: </b>{{data.week52Low}}</p>
+ <p><b>Stock YtdChange: </b>{{data.ytdChange}}</p>
+
+ {% if sold is not False %}
+ 	<div class="btn btn-danger">This stock has been purchased</div>
+ {% else %}
+ 	<form action="" method="post">
+ 		{% csrf_token %}
+ 		<input type="hidden" name="stock_symbol" value="{{ data.symbol }}">
+ 		<button class="btn btn-success">Purchase this stock</button>
+ 	</form>
+ {% endif %}
+ {% if stock_data.user_id == user.id %}
+ 	<a href="{{'/stock/sell/'}}{{data.symbol}}" class="btn btn-warning">Sell Stock</a>
+ {% endif %}
+ 
+ 			{% else %}
+ 			<br>
+ 			<center>
+ 				<div class="alert alert-danger">
+ 				<h3>IEX Error in Query</h3>
+ 				<h5>{{ data }}</h5>
+ 				<h5>Please check your Internet connection and ensure symbol is correct!</h5>
+ 				</div></center>
+ 		{% endif %}
+
+		</div>
+	</div>
+    <!--/ End Content -->
+{% endblock %}

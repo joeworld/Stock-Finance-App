@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+    <!-- Content here -->
+	<div class="container">
+		<br>
+		<h3>Manage your virtual Wallet</h3>
+		<div class="row">
+			<div class="jumbotron">
+				<h5>Current Amount in Wallet: ${{user_wallet}}</h5>
+				<br>
+				<form action="" method="post">
+				<div class="form-group">
+				<h6>This is a test wallet you don't have to pay</h6>
+  				{% csrf_token %}
+    			{% if messages is not None %}
+    			{% for message in messages %}
+	  			<div class="alert alert-success">{{message}}</div>
+	  			{% endfor %}
+	  			{% endif %}
+      			<label for="wallet">User Wallet:</label>
+      			<input type="number" class="form-control" value="{{user_wallet}}" style="width: 50%" placeholder="Enter wallet" name="wallet">
+      			<input type="hidden" value="3" name="transaction_id">
+      			<input type="hidden" value="Wallet updated at {% now 'jS F Y H:i' %}" name="summary">
+      			<br>
+      			<button class="btn btn-primary" type="submit">Update</button>
+    			</div>
+    			</form>
+			</div>
+		</div>
+	</div>
+    <!--/ End Content -->
+{% endblock %}

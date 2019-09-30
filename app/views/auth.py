@@ -37,7 +37,7 @@ def view_login(req):
 			return redirect('/')
 		else:
 			messages.info(req, 'Invalid Credentials')
-			return redirect(req, 'auth/login.html')
+			return render(req, 'auth/login.html')
 	else:
 		return render(req, 'auth/login.html')
 

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+    <!-- Content here -->
+<div class="container">
+<br>
+<div class="jumbotron">
+
+	{% if messages is not None %}
+		{% for message in messages %}
+		<div class="alert alert-danger">{{ message }}</div>
+		{% endfor %}
+	{% endif %}
+	
+	{% if stock is not None %}
+	<div class="form-group">
+	  <div id="errorForm"></div>
+	  <form method="post" action="">
+	  {% csrf_token %}
+      <label for="symbol">Select User:</label>
+      <select class="form-control" style="width: 50%" name="receiver_id">
+      	{% for x_user in users %}
+      		{% if x_user.id is not user.id %}
+      		<option value="{{x_user.id}}">{{x_user.username}} <{{x_user.email}}></option>
+      		{% endif %}
+      	{% endfor %}
+      </select>
+      <input type="hidden" name="stock_symbol" value="{{stock.stock_symbol}}">
+      <br>
+      <button class="btn btn-primary" type="submit">Transfer Stock to User</button>
+  	  </form>
+    </div>
+    {% endif %}
+	
+</div>
+</div>
+    <!--/ End Content -->
+{% endblock %}

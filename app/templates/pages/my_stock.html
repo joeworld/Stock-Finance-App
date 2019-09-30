@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+    <!-- Content here -->
+<div class="container">
+	<br>
+	<h3>Your purchased stocks</h3>
+<div class="row">
+	{% for stock in stocks %}
+<div class="col-md-4 jumbotron">
+		<p><b>Stock Symbol:- </b>{{ stock.stock_symbol|upper }}</p>
+		<p><b>Purchased On :- </b>{{ stock.created }}</p>
+		<br>
+		<a href="{{ '/stock/' }}{{ stock.stock_symbol }}" class="btn btn-success">View Full Detail</a>
+</div>
+	{% endfor %}
+</div>
+</div>
+    <!--/ End Content -->
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+    <!-- Content here -->
+<div class="container">
+<br>
+<div class="jumbotron">
+	<div class="form-group">
+	  <div id="errorForm"></div>
+      <label for="symbol">Stock Symbol:</label>
+      <input type="text" class="form-control" id="search_stock" style="width: 50%" placeholder="Enter Stock" name="search_stock">
+      <br>
+      <button class="btn btn-primary" onclick="searchStock()">Search for Stock</button>
+    </div>
+</div>
+</div>
+    <!--/ End Content -->
+{% endblock %}

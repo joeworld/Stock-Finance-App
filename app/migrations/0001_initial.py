@@ -18,6 +18,7 @@ class Migration(migrations.Migration):
                 ('user_id', models.BigIntegerField()),
                 ('transaction_id', models.BigIntegerField()),
                 ('summary', models.TextField()),
+                ('wallet', models.BigIntegerField(default=0)),
                 ('created', models.DateField(auto_now_add=True)),
             ],
         ),

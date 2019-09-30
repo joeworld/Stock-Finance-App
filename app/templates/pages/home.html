@@ -3,12 +3,14 @@
     <!-- Content here -->
 	<div class="container">
 		<br>
-		<h3>List of transactions</h3>
+		<h3>Few Stocks from IEX</h3>
 		<div class="row">
-			{% for d in data %}
-			<div class="col-md-4">
-				{{ d.summary }}
-				<p>{{ d.created }}</p>
+			{% for x in data.items %}
+			<div class="col-md-3 jumbotron">
+				{% for t in x %}
+    			<h4><a href="{{ '/stock/' }}{{ t.symbol }}">{{ t.companyName }}</a></h4>
+    			<p><b>Stock Price</b>: ${{t.latestPrice}}</p>
+				{% endfor %}
 			</div>
 			{% endfor %}
 		</div>

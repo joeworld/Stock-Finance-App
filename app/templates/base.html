@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Hello World</title>
+	<title>Stock Application</title>
 	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
 </head>
 <body>
@@ -19,7 +19,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="#" style="color: white !important">Home</a>
+        <a class="nav-link" href="{{ '/' }}" style="color: white !important">Home</a>
       </li>
       {% if not user.is_authenticated %}
       <li class="nav-item float-right">
@@ -31,10 +31,19 @@
       {% else %}
 
       <li class="nav-item">
-        <a class="nav-link" href="#" style="color: white !important">My Wallet</a>
+        <a class="nav-link" href="{% url 'view_search_stock' %}" style="color: white !important">Search for Stocks</a>
       </li>
+
       <li class="nav-item">
-        <a class="nav-link" href="#" style="color: white !important">Stocks</a>
+        <a class="nav-link" href="{% url 'view_my_stock' %}" style="color: white !important">My Stocks</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'view_my_wallet' %}" style="color: white !important">My Wallet</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'view_my_transactions' %}" style="color: white !important">My Transactions</a>
       </li>
 
       <li class="nav-item">
@@ -49,6 +58,21 @@
         
         {% endblock %}
         <!-- footer code -->
+
+<script>
+  function searchStock()
+  {
+    var x = document.getElementById("search_stock").value;
+    if(x == "")
+    {
+      var y = document.getElementById("errorForm");
+      y.innerHTML = "<div class='alert alert-danger'>Please type in the symbol</div>";
+    }
+    else{
+      window.location.href=x
+    }
+  }
+</script>
 
 <script type="text/javascript" src='{% static "js/bootstrap.min.js" %}'></script>
 </body>

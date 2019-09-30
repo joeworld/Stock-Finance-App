@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+    <!-- Content here -->
+<div class="container">
+	<br>
+	<h3>Your Transactions</h3>
+<div class="row">
+	{% for trans in user_transactions %}
+<div class="col-md-4 jumbotron">
+		<p><b>Summary:- </b>{{ trans.summary }}</p>
+		<p><b>Date Created:- </b>{{ trans.created }}</p>
+</div>
+	{% endfor %}
+</div>
+</div>
+    <!--/ End Content -->
+{% endblock %}
