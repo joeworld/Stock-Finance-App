@@ -47,9 +47,10 @@ PostgreSQL, also known as Postgres, is a free and open-source relational databas
 16. zope.interface==4.6.0 :- This package provides an implementation of "object interfaces" for Python
 
 > This application is mainly built with python 3.7.4
+> All required dependencies are in ```requirements.txt```
 
 > Admin Url:- /admin
-> Create login details with:- '''python manage.py createsuperuser'''
+> Create login details with:- ```python manage.py createsuperuser```
 
 ## Design Patterns
 
