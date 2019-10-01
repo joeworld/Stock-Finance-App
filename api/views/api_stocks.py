@@ -14,6 +14,7 @@ def view_user_stocks(req):
 	if req.method == 'GET':
 		user_id = req.GET.get('user_id', None)
 		api_key = req.GET.get('api_key', None)
+
 		if all([user_id, api_key]):
 			if keyRepository(api_key).getKeyBySk() == False:
 				response = returnResponse("Api key not found", {}, 'false', 203)

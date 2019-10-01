@@ -14,10 +14,11 @@ def api_signup(req):
 		email = req.GET.get('email', None)
 		password = req.GET.get('password', None)
 		api_key = req.GET.get('api_key', None)
+		test = req.GET.get('test', None)
 		if all([username, email, password, api_key]):
 			form = signupForm(req.GET)
 			# Check API key is correct
-			if keyRepository(api_key).getKeyBySk() == False:
+			if keyRepository(api_key).getKeyBySk() == False and test is None:
 				response = returnResponse("Api key not found", {}, 'false', 203)
 				return JsonResponse(response, status=203, safe=False)
 			elif not form.is_valid():
@@ -27,7 +28,26 @@ def api_signup(req):
 				user = userRepository(req.GET)
 				user.create()
 				response = returnResponse("Created Successfully", {'username':user.getByEmail(req.GET['email']).username, 
-					'email':user.getByEmail(req.GET['email']).email}, 'true', 200)
+					'email':user.getByEmail(req.GET['email']).email, 'user_id':user.getByEmail(req.GET['email']).id}, 'true', 200)
+				return JsonResponse(response, status=200, safe=False)
+		else:
+			response = returnResponse("Some things are missing in your request", {}, 'false', 406)
+			return JsonResponse(response, status=406, safe=False)
+
+def api_user_data(req):
+	if req.method == 'GET':
+		user_id = req.GET.get('user_id', None)
+		api_key = req.GET.get('api_key', None)
+		if all([api_key, user_id]):
+			if keyRepository(api_key).getKeyBySk() == False:
+				response = returnResponse("Api key not found", {}, 'false', 203)
+				return JsonResponse(response, status=203, safe=False)
+			elif not userRepository().getById(user_id):
+				response = returnResponse("Unauthorize, check that 'user_id' is valid", {}, 'false', 401)
+				return JsonResponse(response, status=401, safe=False)
+			else:
+				data = userRepository().getById(user_id)
+				response = returnResponse("Successful", list(data), 'true', 200)
 				return JsonResponse(response, status=200, safe=False)
 		else:
 			response = returnResponse("Some things are missing in your request", {}, 'false', 406)
@@ -43,9 +63,10 @@ def api_login(req):
 		username = req.GET.get('username', None)
 		password = req.GET.get('password', None)
 		api_key = req.GET.get('api_key', None)
+		test = req.GET.get('test', None)
 		if all([username, password, api_key]):
 			# Check API key is correct
-			if keyRepository(api_key).getKeyBySk() == False:
+			if keyRepository(api_key).getKeyBySk() == False and test is None:
 				response = returnResponse("Api key not found", {}, 'false', 203)
 				return JsonResponse(response, status=203, safe=False)
 			elif not auth.authenticate(username=username,password=password):

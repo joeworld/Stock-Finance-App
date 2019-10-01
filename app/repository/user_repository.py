@@ -17,9 +17,12 @@ class userRepository:
 		user = User.objects.create_user(username=username, password=password, email=email)
 		return user.save()
 
-	def getById(self, value):
+	def getById(self, value, values = False):
 		try:
-			user = User.objects.get(id=value)
+			if values == False:
+				user = User.objects.get(id=value)
+			else:
+				user = User.objects.get(id=value).values('user_id','email','username')
 		except User.DoesNotExist:
 			user = False
 		return user

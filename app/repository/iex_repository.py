@@ -18,19 +18,13 @@ class iexRepository:
 			return False
 
 	def getStockQuote(self): #Returns stock quotes
-		batch = Stock(self.__stock_symbol, token=self.__secret_key)
-		err = None
 		try:
+			batch = Stock(self.__stock_symbol, token=self.__secret_key)
 			re = batch.get_quote()
-		except IEXSymbolError as error:
-			err = error
-		except IEXQueryError as errq:
-			err = errq
-		else:
-			return re
+		except:
+			re = False
 
-		if err is not None:
-			return err
+		return re
 
 	def getStockViaClient(self):
 		try:
@@ -40,6 +34,10 @@ class iexRepository:
 			stock = False
 		return stock
 
-	def getMultipleStocks(self, stock_symbols): #Return multiple stocks
-		batch = Stock(stock_symbols, token=self.__secret_key)
-		return batch.get_quote()
+	def getMultipleStocks(self, stock_symbols):
+		try:
+			batch = Stock(stock_symbols, token=self.__secret_key)
+			batch = batch.get_quote()
+		except:
+			batch = False
+		return batch

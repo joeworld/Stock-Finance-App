@@ -12,5 +12,6 @@ urlpatterns = [
     path('stock/price', views.view_search_stock_price, name='view_search_stock_price'),
     path('stock/buy', views.view_buy_stock, name='view_buy_stock'),
     path('stock/sell', views.view_share_stock, name='view_share_stock'),
-    path('user-stocks', views.view_user_stocks, name='view_user_stocks')
+    path('user-stocks', views.view_user_stocks, name='view_user_stocks'),
+    path('user-data', views.api_user_data, name='api_user_data')
 ]

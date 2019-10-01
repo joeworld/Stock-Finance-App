@@ -15,6 +15,9 @@ class keyRepository:
 
 		return get_key
 
+	def getKeyBySkTest(self):
+		return apiKeys.objects.get(secret_key=self.__sk)
+
 	def getKeyByPk(self):
 		try:
 			get_key = apiKeys.objects.get(public_key=self.__pk)
