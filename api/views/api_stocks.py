@@ -32,7 +32,7 @@ def view_user_stocks(req):
 			return JsonResponse(response, status=406, safe=False)
 
 
-def view_search_stock(req):
+def view_api_search_stock(req):
 	if req.method == 'GET':
 		user_id = req.GET.get('user_id', None)
 		api_key = req.GET.get('api_key', None)
