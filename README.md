@@ -23,6 +23,8 @@ With this simple django app, you will be able to perform the following task:-
 
 This application was built with PostgreSQL as DB but you can use other RDB by running migrations.
 
+But if you choose to use the test database for this project check '''sampledb/trade.sql'''
+
 PostgreSQL, also known as Postgres, is a free and open-source relational database management system emphasizing extensibility and technical standards compliance.
 
 ## Common Technologies/Libraries used in Building this web app
@@ -45,6 +47,9 @@ PostgreSQL, also known as Postgres, is a free and open-source relational databas
 16. zope.interface==4.6.0 :- This package provides an implementation of "object interfaces" for Python
 
 > This application is mainly built with python 3.7.4
+
+> Admin Url:- /admin
+> Create login details with:- '''python manage.py createsuperuser'''
 
 ## Design Patterns
 
