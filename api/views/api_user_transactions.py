@@ -8,6 +8,7 @@ from app.forms import signupForm, loginForm
 from django.contrib.auth.models import User, auth
 import json
 import datetime
+from django.forms.models import model_to_dict
 
 def view_user_transactions(req):
 	if req.method == 'GET':
@@ -51,6 +52,26 @@ def view_update_wallet(req):
 				transaction_id = 3
 				u.createTransaction(user_id, summary, transaction_id)
 				response = returnResponse("Successful", {'summary': summary, 'transaction_id': transaction_id}, 'true', 200)
+				return JsonResponse(response, status=200, safe=False)
+		else:
+			response = returnResponse("Some stuffs are missing in your request", {}, 'false', 406)
+			return JsonResponse(response, status=406, safe=False)
+
+def view_user_api_wallet(req):
+	if req.method == 'GET':
+		user_id = req.GET.get('user_id', None)
+		api_key = req.GET.get('api_key', None)
+		if all([user_id, api_key]):
+			if keyRepository(api_key).getKeyBySk() == False:
+				response = returnResponse("Api key not found", {}, 'false', 203)
+				return JsonResponse(response, status=203, safe=False)
+			elif not userRepository().getById(user_id):
+				response = returnResponse("Unauthorize, check that 'user_id' is valid", {}, 'false', 401)
+				return JsonResponse(response, status=401, safe=False)
+			else:
+				# Get transactions
+				data = userRepository().getUserWalletValues(user_id)
+				response = returnResponse("Successful", model_to_dict(data), 'true', 200)
 				return JsonResponse(response, status=200, safe=False)
 		else:
 			response = returnResponse("Some stuffs are missing in your request", {}, 'false', 406)

@@ -54,6 +54,13 @@ class userRepository:
 			wallet = None
 		return wallet
 
+	def getUserWalletValues(self, user_id):
+		try:
+			wallet = userModel.objects.get(user_id=user_id)
+		except userModel.DoesNotExist:
+			wallet = None
+		return wallet
+
 	def createWallet(self, user_id, wallet=None, summary=None):
 		transaction_id = 2
 		dt = str(datetime.datetime.now())
