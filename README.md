@@ -17,7 +17,7 @@ With this simple django app, you will be able to perform the following task:-
 7. Users can sell/share stocks
 8. Users can see their transactions made on the app
 
-> This application embibes both a user interface and a client api for commercial usage
+> This application embibes both a user interface and a client api for commercial usage (Check out API Doc https://drive.google.com/open?id=1iM78FBSbk8qtPIJpy3sThv-kDQVk8nJx)
 
 ## Database
 
