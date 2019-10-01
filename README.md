@@ -19,6 +19,12 @@ With this simple django app, you will be able to perform the following task:-
 
 > This application embibes both a user interface and a client api for commercial usage
 
+## Database
+
+This application was built with PostgreSQL as DB but you can use other RDB by running migrations.
+
+PostgreSQL, also known as Postgres, is a free and open-source relational database management system emphasizing extensibility and technical standards compliance.
+
 ## Common Technologies/Libraries used in Building this web app
 
 1. Django==2.2.5 :- Powerful Python Web Framework
