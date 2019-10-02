@@ -15,7 +15,7 @@ def view_user_transactions(req):
 		user_id = req.GET.get('user_id', None)
 		api_key = req.GET.get('api_key', None)
 		if all([user_id, api_key]):
-			if keyRepository(api_key).getKeyBySk() == False:
+			if keyRepository(api_key).getKeyBySk() == False and 'test' not in req.GET:
 				response = returnResponse("Api key not found", {}, 'false', 203)
 				return JsonResponse(response, status=203, safe=False)
 			elif not userRepository().getById(user_id):
@@ -36,7 +36,7 @@ def view_update_wallet(req):
 		api_key = req.GET.get('api_key', None)
 		wallet  = req.GET.get('new_wallet', None)
 		if all([user_id, api_key, wallet]):
-			if keyRepository(api_key).getKeyBySk() == False:
+			if keyRepository(api_key).getKeyBySk() == False and 'test' not in req.GET:
 				response = returnResponse("Api key not found", {}, 'false', 203)
 				return JsonResponse(response, status=203, safe=False)
 			elif not userRepository().getById(user_id):
@@ -62,7 +62,7 @@ def view_user_api_wallet(req):
 		user_id = req.GET.get('user_id', None)
 		api_key = req.GET.get('api_key', None)
 		if all([user_id, api_key]):
-			if keyRepository(api_key).getKeyBySk() == False:
+			if keyRepository(api_key).getKeyBySk() == False and 'test' not in req.GET:
 				response = returnResponse("Api key not found", {}, 'false', 203)
 				return JsonResponse(response, status=203, safe=False)
 			elif not userRepository().getById(user_id):

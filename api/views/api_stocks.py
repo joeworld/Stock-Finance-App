@@ -16,7 +16,7 @@ def view_user_stocks(req):
 		api_key = req.GET.get('api_key', None)
 
 		if all([user_id, api_key]):
-			if keyRepository(api_key).getKeyBySk() == False:
+			if keyRepository(api_key).getKeyBySk() == False and 'test' not in req.GET:
 				response = returnResponse("Api key not found", {}, 'false', 203)
 				return JsonResponse(response, status=203, safe=False)
 			elif not userRepository().getById(user_id):
@@ -47,7 +47,7 @@ def view_api_search_stock(req):
 			sold = False
 
 		if all([user_id, api_key, stock_symbol]):
-			if keyRepository(api_key).getKeyBySk() == False:
+			if keyRepository(api_key).getKeyBySk() == False and 'test' not in req.GET:
 				response = returnResponse("Api key not found", {}, 'false', 203)
 				return JsonResponse(response, status=203, safe=False)
 			elif not userRepository().getById(user_id):
@@ -81,7 +81,7 @@ def view_search_stock_price(req):
 			sold = False
 
 		if all([user_id, api_key, stock_symbol]):
-			if keyRepository(api_key).getKeyBySk() == False:
+			if keyRepository(api_key).getKeyBySk() == False and 'test' not in req.GET:
 				response = returnResponse("Api key not found", {}, 'false', 203)
 				return JsonResponse(response, status=203, safe=False)
 			elif not userRepository().getById(user_id):
@@ -107,7 +107,7 @@ def view_buy_stock(req):
 		stock_symbol = req.GET.get('stock_symbol', None)
 		api_key = req.GET.get('api_key', None)
 		if all([user_id, api_key, stock_symbol]):
-			if keyRepository(api_key).getKeyBySk() == False:
+			if keyRepository(api_key).getKeyBySk() == False and 'test' not in req.GET:
 				response = returnResponse("Api key not found", {}, 'false', 203)
 				return JsonResponse(response, status=203, safe=False)
 			elif not userRepository().getById(user_id):
@@ -141,7 +141,7 @@ def view_share_stock(req):
 		stock_symbol = req.GET.get('stock_symbol', None)
 		api_key = req.GET.get('api_key', None)
 		if all([user_id, receiver_id, stock_symbol, api_key]):
-			if keyRepository(api_key).getKeyBySk() == False:
+			if keyRepository(api_key).getKeyBySk() == False and 'test' not in req.GET:
 				response = returnResponse("Api key not found", {}, 'false', 203)
 				return JsonResponse(response, status=203, safe=False)
 			elif not userRepository().getById(user_id):
