@@ -52,14 +52,14 @@ PostgreSQL, also known as Postgres, is a free and open-source relational databas
 > Admin Url:- /admin
 > Create login details with:- ```python manage.py createsuperuser```
 
-## Design Patterns
-
-1. Repository Design Patterns
-2. MVC
-
 ## Tests
 
 1. api/tests
 2. app/tests
 
-```python manage.py tests``` to run tests
+```python manage.py tests``` to run tests... More tests will be added soon
+
+## Design Patterns
+
+1. Repository Design Patterns
+2. MVC
