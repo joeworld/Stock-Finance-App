@@ -56,3 +56,10 @@ PostgreSQL, also known as Postgres, is a free and open-source relational databas
 
 1. Repository Design Patterns
 2. MVC
+
+## Tests
+
+1. api/tests
+2. app/tests
+
+```python manage.py tests``` to run tests
