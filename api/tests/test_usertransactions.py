@@ -3,7 +3,7 @@ from app.repository import iexRepository, stockRepository, userRepository
 import json
 import datetime
 
-class StockTestClass(TestCase):
+class TransactionsTestClass(TestCase):
     @classmethod
     def setUpTestData(cls):
         print("setUpTestData: Run once to set up non-modified data for all class methods.")
@@ -47,3 +47,8 @@ class StockTestClass(TestCase):
         user = json.loads(self.login_sample_user())
         response = userRepository().getUserTransaction(user['data']['user_id'], True)
         self.assertEqual(0, len(response))
+
+    def test_create_transactions(self):
+        user = json.loads(self.login_sample_user())
+        response = userRepository(None,True).createTransaction(user['data']['user_id'], "Test", 3, True)
+        self.assertEqual(1, len(response))

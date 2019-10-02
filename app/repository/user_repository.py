@@ -83,7 +83,7 @@ class userRepository:
 			wallet = userModel(user_id=user_id,transaction_id=transaction_id,summary=summary,wallet=wallet)
 			return wallet.save()
 
-	def createTransaction(self, user_id, summary=None, transaction_id=None):
+	def createTransaction(self, user_id, summary=None, transaction_id=None, get=True):
 		if self.__create_transaction == True:
 			if summary == None:
 				summary = self.__req.get('summary', False)
@@ -91,7 +91,11 @@ class userRepository:
 			if transaction_id == None:
 				transaction_id = self.__req.get('transaction_id', False)
 			transact = userTransaction(user_id=user_id,transaction_id=transaction_id,summary=summary)
-			return transact.save()
+			if get == True:
+				transact.save()
+				return self.getUserTransaction(user_id, True)
+			else:
+				return transact.save()
 		else:
 			return False
 
