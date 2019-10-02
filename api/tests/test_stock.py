@@ -1,6 +1,7 @@
 from django.test import TestCase
 from app.repository import iexRepository, stockRepository, userRepository
 import json
+import datetime
 
 class StockTestClass(TestCase):
     @classmethod
@@ -39,6 +40,22 @@ class StockTestClass(TestCase):
         'test':'test'}
         response = self.client.get('/api/v1/auth/register', req)
         return {'username':'registeruser2','password':'registeruser123'}
+
+    def user_create_stock(self, user_id):
+        self.update_test_wallet(user_id)
+        st = {}
+        st['stock_symbol'] = 'yy'
+        stock = stockRepository(st).insertStock(user_id)
+
+    def update_test_wallet(self, user_id):
+        # Update wallet
+        u = userRepository(None, True)
+        u.createWallet(user_id, 9000)
+        dt = str(datetime.datetime.now())
+        summary = str("Wallet was updated at ")
+        summary = summary + dt
+        transaction_id = 3
+        u.createTransaction(user_id, summary, 3)
 
     def login_sample_receiver(self):
         user = self.create_sample_receiver()
@@ -85,7 +102,7 @@ class StockTestClass(TestCase):
 
     def test_can_buy_stock(self):
         user = json.loads(self.login_sample_user())
-        wallet = self.client.get('/api/v1/update-wallet', {'user_id':user['data']['user_id'],'api_key':'sk_6765fr554ef33342332467678','new_wallet':9000})
+        self.update_test_wallet(user['data']['user_id'])
         req = {
         'user_id': user['data']['user_id'],
         'api_key':'sk_6765fr554ef33342332467678',
@@ -97,6 +114,8 @@ class StockTestClass(TestCase):
 
     def test_can_sell_stock(self):
         user = json.loads(self.login_sample_user())
+        self.update_test_wallet(user['data']['user_id'])
+        self.user_create_stock(user['data']['user_id'])
         receiver = json.loads(self.login_sample_receiver())
         req = {
         'user_id': user['data']['user_id'],
