@@ -37,16 +37,17 @@ class StockTestClass(TestCase):
         stock = stockRepository(st).insertStock(user_id)
         return stock
 
-    def test_user_create_stock(self, user_id):
+    def test_user_create_stock(self):
+        user = json.loads(self.login_sample_user())
         st = {}
         st['stock_symbol'] = 'yy'
-        stock = stockRepository(st).insertStock(user_id)
+        stock = stockRepository(st).insertStock(user['data']['user_id'])
         self.assertNotEqual(False, stock)
 
     def test_get_user_repo_stocks(self):
         user = json.loads(self.login_sample_user())
-        stocks = userRepository().getUserStock(user['data']['user_id'])
+        stocks = stockRepository().getUserStock(user['data']['user_id'])
         self.assertEqual(0, len(stocks))
         self.create_stock(user['data']['user_id'])
-        stocks = userRepository().getUserStock(user['data']['user_id'])
+        stocks = stockRepository().getUserStock(user['data']['user_id'])
         self.assertEqual(1, len(stocks))

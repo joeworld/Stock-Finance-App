@@ -50,7 +50,7 @@ class StockTestClass(TestCase):
     def update_test_wallet(self, user_id):
         # Update wallet
         u = userRepository(None, True)
-        u.createWallet(user_id, 9000)
+        u.createWallet(user_id, 10000)
         dt = str(datetime.datetime.now())
         summary = str("Wallet was updated at ")
         summary = summary + dt
@@ -110,7 +110,7 @@ class StockTestClass(TestCase):
         'test':'test'}
         response = self.client.get('/api/v1/stock/buy', req)
         print(str(response.content, encoding='utf8'))
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 406)
 
     def test_can_sell_stock(self):
         user = json.loads(self.login_sample_user())
