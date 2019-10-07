@@ -57,7 +57,7 @@ PostgreSQL, also known as Postgres, is a free and open-source relational databas
 1. api/tests
 2. app/tests
 
-```python manage.py tests``` to run tests... More tests will be added soon
+```python manage.py test``` to run tests... More tests will be added soon
 
 ## Design Patterns
 
